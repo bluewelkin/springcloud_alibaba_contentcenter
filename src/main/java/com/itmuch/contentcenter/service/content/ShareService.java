@@ -4,6 +4,7 @@ import com.itmuch.contentcenter.dao.user.ShareMapper;
 import com.itmuch.contentcenter.domain.dto.content.ShareDTO;
 import com.itmuch.contentcenter.domain.dto.user.UserDTO;
 import com.itmuch.contentcenter.domain.entity.content.Share;
+import com.itmuch.contentcenter.feignclient.UserCenterFeignClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -16,18 +17,13 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 public class ShareService {
     private final ShareMapper shareMapper;
-    private final RestTemplate restTemplate;
+    private final UserCenterFeignClient userCenterFeignClient;
 
     public ShareDTO findById(Integer id){
         Share share = this.shareMapper.selectByPrimaryKey(id);
         Integer userId=share.getUserId();
-        String targerUrl = "Http://usercenterprovider/users/{id}";
+        UserDTO userDTO = this.userCenterFeignClient.findById(userId);
 
-        UserDTO userDTO= this.restTemplate.getForObject(
-                targerUrl,
-                UserDTO.class,userId
-        );
-        log.info(targerUrl);
 
         ShareDTO shaeDTO =new ShareDTO();
         BeanUtils.copyProperties(share,shaeDTO);
