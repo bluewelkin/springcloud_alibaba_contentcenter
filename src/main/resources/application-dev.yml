@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    active: dev
+  datasource:                                           # ����Դ���������
+    type: com.zaxxer.hikari.HikariDataSource          # ����Դ���ͣ�HikariCP
+    driver-class-name: com.mysql.cj.jdbc.Driver          # mysql����
+    url: jdbc:mysql://localhost:3306/content_center?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=UTC
+    username: root
+    password: root
+    hikari:
+      connection-timeout: 30000       # �ȴ����ӳط������ӵ����ʱ�������룩���������ʱ����û���õ���������SQLException�� Ĭ��:30��
+      minimum-idle: 5                 # ��С������
+      maximum-pool-size: 20           # ���������
+      auto-commit: true               # �Զ��ύ
+      idle-timeout: 600000            # ���ӳ�ʱ�����ʱ�������룩����ʱ���ͷţ�retired����Ĭ��:10����
+      pool-name: DateSourceHikariCP     # ���ӳ�����
+      max-lifetime: 1800000           # ���ӵ�����ʱ�������룩����ʱ����û��ʹ�����ͷţ�retired����Ĭ��:30���� 1800000ms
+      connection-test-query: SELECT 1
+
+
