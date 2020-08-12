@@ -60,7 +60,6 @@ public class ShareService {
 //                UserDTO.class,userId
 //        );
 
-
                 UserDTO userDTO= this.restTemplate.getForObject(
                         "http://usercenterprovider/users/{id}",
                 UserDTO.class,userId
