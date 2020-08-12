@@ -43,18 +43,30 @@ public class ShareService {
 //                targetUrl,
 //                UserDTO.class,userId
 //        );
-        List<ServiceInstance> instances = this.discoveryClient.getInstances("usercenterprovider");
-  //      System.out.println(instances.size());
-        List<String> targetUrlS= instances.stream().map(instance -> instance.getUri().toString() + "/users/{id}")
-                .collect(Collectors.toList());
 
-        int i = ThreadLocalRandom.current().nextInt(targetUrlS.size());
-        String targetUrl = targetUrlS.get(i);
-        log.info("请求的负载均衡的一个实例是：{}",targetUrl);
+        /**
+         * Robbin 代替下面
+          */
+//        List<ServiceInstance> instances = this.discoveryClient.getInstances("usercenterprovider");
+//  //      System.out.println(instances.size());
+//        List<String> targetUrlS= instances.stream().map(instance -> instance.getUri().toString() + "/users/{id}")
+//                .collect(Collectors.toList());
+//
+//        int i = ThreadLocalRandom.current().nextInt(targetUrlS.size());
+//        String targetUrl = targetUrlS.get(i);
+//        log.info("请求的负载均衡的一个实例是：{}",targetUrl);
+//                UserDTO userDTO= this.restTemplate.getForObject(
+//                        targetUrl,
+//                UserDTO.class,userId
+//        );
+
+
                 UserDTO userDTO= this.restTemplate.getForObject(
-                        targetUrl,
+                        "http://usercenterprovider/users/{id}",
                 UserDTO.class,userId
         );
+
+
 
 
         ShareDTO shaeDTO =new ShareDTO();
