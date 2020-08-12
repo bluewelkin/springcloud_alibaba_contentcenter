@@ -33,12 +33,12 @@ public class ShareService {
         return shaeDTO;
 
 
-    }
+}
 
 //    public static void main(String[] args) {
 //        RestTemplate restTemplate = new RestTemplate();
 //        String forObject = restTemplate.getForObject(
-//                "http://localhost:8080/users/1",
+//                "http://localhost:8082/users/1",
 //                String.class
 //
 //        );

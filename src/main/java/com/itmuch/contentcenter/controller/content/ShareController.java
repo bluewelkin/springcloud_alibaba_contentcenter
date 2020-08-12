@@ -3,7 +3,6 @@ package com.itmuch.contentcenter.controller.content;
 import com.itmuch.contentcenter.domain.dto.content.ShareDTO;
 import com.itmuch.contentcenter.service.content.ShareService;
 import lombok.RequiredArgsConstructor;
-import org.omg.CORBA.PRIVATE_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,9 +16,13 @@ public class ShareController {
     private final ShareService shareService;
 
     @GetMapping("/{id}")
-    public ShareDTO findById(@PathVariable Integer id){
+    public ShareDTO findById(@PathVariable(value = "id") Integer id){
         return this.shareService.findById(id);
     }
+@GetMapping("/hello")
+    public String kaishi(){
+    return "hello";
+}
 
 
 
